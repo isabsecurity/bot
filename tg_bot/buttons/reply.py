@@ -1,24 +1,23 @@
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
-# from bot.models import  StudyDirections_uz,StudyDirections_ru,UniversityApplication
 from tg_bot.buttons.text import *
-from tg_bot.language_db import uz,ru
-
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 def admin_btn_uz():
-    keyboard1 = KeyboardButton(text = "Mijozlar ro'yxati")
-    keyboard2 = KeyboardButton(text = "Otzivlar statistikasi")
-    keyboard3 = KeyboardButton(text="Fikrlar, baholar")
-    keyboard4 = KeyboardButton(text="Export CSV")
+    keyboard1 = KeyboardButton(text = "🧾 Mijozlar ro'yxati")
+    keyboard2 = KeyboardButton(text = "📊 Otzivlar statistikasi")
+    keyboard3 = KeyboardButton(text="🗂 Fikrlar, baholar")
+    keyboard4 = KeyboardButton(text="📥 Export CSV")
 
     design = [[keyboard1, keyboard2],
               [keyboard3, keyboard4],]
     return ReplyKeyboardMarkup(keyboard=design ,
                                resize_keyboard=True)
 def admin_btn_ru():
-    keyboard1 = KeyboardButton(text="Список клиентов")
-    keyboard2 = KeyboardButton(text="Статистика отзывов")
-    keyboard3 = KeyboardButton(text="Мнения и оценки")
-    keyboard4 = KeyboardButton(text="Экспорт CSV")
+    keyboard1 = KeyboardButton(text="🧾 Список клиентов")
+    keyboard2 = KeyboardButton(text="📊 Статистика отзывов")
+    keyboard3 = KeyboardButton(text="🗂 Мнения и оценки")
+    keyboard4 = KeyboardButton(text="📥 Экспорт CSV")
 
     design = [[keyboard1, keyboard2],
               [keyboard3, keyboard4],]
@@ -107,3 +106,40 @@ def menu_back_ru():
     design=[[keyboard3]]
     return ReplyKeyboardMarkup(keyboard=design, resize_keyboard=True)
 
+def referral_btn_uz(user_id):
+    bot_link = f"https://t.me/isabsecuritybot?start={user_id}"
+    text = "🚀 Bizga qo'shiling va uyingiz hamda businnesingiz havfsizligini oshiring."
+
+    ikb = InlineKeyboardBuilder()
+    ikb.row(InlineKeyboardButton(
+        text="Do'stlarni taklif qilish",
+        url=f"https://t.me/share/url?url={bot_link}&text={text}"
+    ))
+
+    return ikb.as_markup()
+def referral_btn_ru(user_id):
+    bot_link = f"https://t.me/isabsecuritybot?start={user_id}"
+    text = "🚀 Присоединяйтесь к нам и повышайте безопасность вашего дома и бизнеса."
+
+    ikb = InlineKeyboardBuilder()
+    ikb.row(InlineKeyboardButton(
+        text='Пригласить друзей',
+        url=f"https://t.me/share/url?url={bot_link}&text={text}"
+    ))
+
+    return ikb.as_markup()
+
+def menu_uz():
+    keyboard1=KeyboardButton(text='')
+    keyboard2=KeyboardButton(text='📑 Kafolat Talonini')
+    keyboard3=KeyboardButton(text="👨‍💼 Do'stlatni taklif qilish")
+    keyboard4=KeyboardButton(text='⏱️ Kafolat muddatini bilish')
+    design = [[keyboard1, keyboard2], [keyboard3, keyboard4]]
+    return ReplyKeyboardMarkup(keyboard=design, resize_keyboard=True)
+def menu_ru():
+    keyboard1 = KeyboardButton(text='')
+    keyboard2 = KeyboardButton(text='📑 Гарантийный талон')
+    keyboard3 = KeyboardButton(text='👨‍💼 Пригласить друзей')
+    keyboard4 = KeyboardButton(text='⏱️ Узнать срок гарантии')
+    design = [[keyboard1, keyboard2], [keyboard3, keyboard4]]
+    return ReplyKeyboardMarkup(keyboard=design, resize_keyboard=True)

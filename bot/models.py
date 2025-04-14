@@ -7,7 +7,6 @@ class User(models.Model):
     referal_count = models.IntegerField(default=0)
     chat_id = models.BigIntegerField(null=True, blank=True, default=0)
     interface_language = models.CharField(max_length=10)
-    photo = models.CharField(max_length=255, null=True, blank=True, )
     full_name = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=255, null=True, blank=True)
     role = models.CharField(max_length=255, null=True, blank=True,

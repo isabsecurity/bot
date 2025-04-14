@@ -10,6 +10,7 @@ class MenuState(StatesGroup):
 
 
 class Messeage(StatesGroup):
+    phone=State()
     rating = State()
     opinion=State()
     objective=State()

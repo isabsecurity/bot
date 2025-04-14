@@ -3,8 +3,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from aiogram import Bot
 from decouple import config
-# from aiogram.enums import ChatMemberStatus
-# from aiogram.types import ChatMember
 from dispatcher import TOKEN
 
 
@@ -14,7 +12,7 @@ bot = Bot(token=TOKEN)
 def format_phone_number(phone_number: str) -> str | bool:
     phone_number = ''.join(c for c in phone_number if c.isdigit())
 
-    # Prepend +998 if missing
+
     if phone_number.startswith('998'):
         phone_number = '+' + phone_number
     elif not phone_number.startswith('+998'):
@@ -31,12 +29,12 @@ def passport_number_checker(passport_number: str) -> bool:
     return bool(re.fullmatch(r"^[A-Z]{2}\d{7}$", passport_number))
 
 
-def save_to_google_sheets(rating,opinion,objection,photo):
+def save_to_google_sheets(phone_number,rating,opinion,objection,image):
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name(filename=config('FILE_PLACE'))
+    creds = ServiceAccountCredentials.from_json_keyfile_name(filename=config('FILE_NAME'))
     client = gspread.authorize(creds)
     sheet = client.open("Isab security client opinion").sheet1
-    sheet.append_row([rating,opinion,objection,photo])
+    sheet.append_row([phone_number,rating,opinion,objection,image])
 
 
 
