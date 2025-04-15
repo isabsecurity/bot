@@ -181,7 +181,7 @@ async def handle_name(message: Message, state: FSMContext) -> None:
             await message.answer(text=ru.get('button'))
             return
     if not message.text.isdigit():
-        rating = len(message.text)/2
+        rating = message.text.count('⭐️')
     else:
         rating = message.text
     data['rating'] = rating
